@@ -2,34 +2,28 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: {
+        main: path.join(__dirname, "src/index.js"),
+    },
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: path.join(__dirname, "dist"),
         filename: "[name].bundle.js",
     },
     module: {
         rules: [
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: "babel-loader",
+                test: /.js/,
+                exclude: /(node_modules)/,
+                use: ["babel-loader"],
             },
             {
-                test: /\.(sa|sc|c)ss$/,
-                use: [
-                    {
-                        loader: "style-loader",
-                    },
-                    {
-                        loader: "css-loader",
-                    },
-                    {
-                        loader: "postcss-loader",
-                    },
-                    {
-                        loader: "sass-loader",
-                    },
-                ],
+                test: /.css$/i,
+                use: ["style-loader", "css-loader"],
+            },
+            {
+                test: /.(png|svg|jpg|gif)$/,
+                use: ["file-loader"],
+                exclude: /node_modules/,
             },
         ],
     },
@@ -38,13 +32,17 @@ module.exports = {
             template: path.join(__dirname, "./src/index.html"),
         }),
     ],
+    stats: "minimal",
     devtool: "source-map",
     mode: "development",
     devServer: {
+        open: false,
         static: path.resolve(__dirname, "./dist"),
-        open: true,
+        port: 4001,
+        historyApiFallback: {
+            index: "index.html",
+        },
         watchFiles: ["./src/**"],
-        port: 4000,
         hot: true,
     },
 };
