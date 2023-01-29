@@ -1,6 +1,6 @@
 # snakeJS
 
-Troisième projet réalisé (12/2022) lors de la formation JavaScript sur Dayma.fr. Ce projet utilise la WebApi 'Canvas'.
+Troisième projet réalisé (12/2022) lors de la formation JavaScript sur Dyma.fr. Ce projet utilise la WebApi 'Canvas'.
 
 Fonctionnement: 
 - Le Canvas (800px / 800px) est divisé en cellules de 40px / 40px.
